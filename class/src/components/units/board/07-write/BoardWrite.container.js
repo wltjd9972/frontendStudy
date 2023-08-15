@@ -8,6 +8,8 @@ import BoardWriteUI from "./BoardWrite.presenter" //export default로 된 함수
 // import * as S from './BoardWrite.styles' //export 한번에 가져오기
 
 export default function BoardWrite(){
+  const [isActive, setIsActive] = useState(false)
+
   const [myFunction] = useMutation(myGraphqlSetting)
   const [writer,setWriter] = useState("")
   const [title,setTitle] = useState("")
@@ -25,23 +27,34 @@ export default function BoardWrite(){
   }
   const onChangeWriter = (event) => {
     setWriter(event.target.value)
+    if(writer && title && contents){
+      setIsActive(true)
+    }
   }
 
   const onChangeTitle = (event) => {
     setTitle(event.target.value)
+    if(writer && title && contents){
+      setIsActive(true)
+    }
   }
 
   const onChangecontents = (event) => {
     setcontents(event.target.value)
+    if(writer && title && contents){
+      setIsActive(true)
+    }
   }
 
   return(
     <>
       <BoardWriteUI 
-      aaa={onClickSummit}
-      bbb={onChangeWriter}
-      ccc={onChangeTitle}
-      ddd={onChangecontents}/>
+      onClickSummit={onClickSummit}
+      onChangeWriter={onChangeWriter}
+      onChangeTitle={onChangeTitle}
+      onChangecontents={onChangecontents}
+      isActive={isActive}
+      />
     </>
   )
 }
