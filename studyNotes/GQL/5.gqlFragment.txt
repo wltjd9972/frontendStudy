@@ -1,0 +1,3 @@
+hooks에서 따로 만든 query나 mutation 에 인자값을 페이지별로 바꾸는 기술이 
+
+gql fragment임

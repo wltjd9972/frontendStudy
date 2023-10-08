@@ -1,0 +1,21 @@
+1.useState Object
+
+  const [inputs, setInputs] = useState({
+    writer: "",
+    title: "",
+    contents: "",
+  });
+
+2. handler
+
+  const onChangeWriter = (event) => {
+    setInputs({
+      ...inputs, //객체 안에있는것을 얕은 복사로 복사함
+
+      [event.target.id]: event.target.valuse, //그위에 덮어씌움 여기서 []는 배열이 아닌 key를 뜻함
+    });
+  };
+
+  
+
+

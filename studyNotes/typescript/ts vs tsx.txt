@@ -1,0 +1,5 @@
+ts 는 일반 js 파일
+tsx는 jsx를 사용하는 js파일
+
+
+next > _app > {component}: appProps 로 설정

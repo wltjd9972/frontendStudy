@@ -1,0 +1,20 @@
+얕은 복사 ...스프레드 연산자
+깊은 복사 JSON.stringify(profile1), JSON.parse(JSON.stringify(profile1))
+
+... 스프레드 연산자
+
+JS에서 string,number는 복사가 됨
+그러나 객체나 배열은 주소가 복사되기 때문에
+복사가 아니라 c언어의 포인터마냥 원본을 바꿔버림
+그래서 스프레드연산자를 사용함
+그렇기 때문에 객체나 배열을 복사할때는 무조건 ...스프레드 연산자 사용하기
+
+사용법
+객체 복사
+qqq = {...object} //객체 복사
+    여기서 객체 안에 객체가 있는경우는
+JSON.stringify(object)
+qqq = JSON.parse(JSON.stringify(object))
+
+배열 복사
+qqq = {...array} //배열 복사

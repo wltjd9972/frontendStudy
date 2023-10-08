@@ -1,0 +1,36 @@
+import { Modal } from "antd";
+import { useState } from "react";
+import DaumPostcodeEmbed from "react-daum-postcode";
+import type { Address } from "react-daum-postcode";
+export default function ModalAlertPage(): JSX.Element {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const onToggleModal = (): void => {
+    setIsOpen((prev) => !prev);
+  };
+
+  const handleComplete = (data: Address): void => {
+    console.log(data);
+    onToggleModal();
+  };
+  return (
+    <>
+      <button onClick={onToggleModal}>modal</button>
+
+      {/* 모달 종료 방식 - 1. 모달 숨기는 방법*/}
+      {/* <Modal open={isOpen} onOk={handleOk} onCancel={handleCancel}>
+        <DaumPostcodeEmbed onComplete={handleComplete} />
+      </Modal> */}
+
+      {/* 이 첫 번째 방식에서는 Modal 컴포넌트가 항상 DOM에 남아 있습니다. 모달의 표시 여부는 open prop의 값에 의해 결정됩니다. */}
+
+      {/* 모달 종료 방식 - 1. 모달 삭제하는 방법*/}
+      {isOpen && (
+        <Modal open={true} onOk={onToggleModal} onCancel={onToggleModal}>
+          <DaumPostcodeEmbed onComplete={handleComplete} />
+        </Modal>
+      )}
+      {/* isOpen이 true일 때만 Modal 컴포넌트를 렌더링합니다. isOpen이 false일 경우, Modal 컴포넌트는 아예 DOM에서 제거됩니다. */}
+    </>
+  );
+}

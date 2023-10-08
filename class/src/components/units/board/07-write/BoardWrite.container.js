@@ -27,21 +27,21 @@ export default function BoardWrite(){
   }
   const onChangeWriter = (event) => {
     setWriter(event.target.value)
-    if(writer && title && contents){
+    if(event.target.value && title && contents){
       setIsActive(true)
     }
   }
 
   const onChangeTitle = (event) => {
     setTitle(event.target.value)
-    if(writer && title && contents){
+    if(writer && event.target.value && contents){
       setIsActive(true)
     }
   }
 
   const onChangecontents = (event) => {
     setcontents(event.target.value)
-    if(writer && title && contents){
+    if(writer && title && event.target.value){
       setIsActive(true)
     }
   }

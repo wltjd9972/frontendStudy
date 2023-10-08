@@ -1,0 +1,39 @@
+====사용법====
+
+1. import해야됨
+    import { AppleOutlined } from "@ant-design/icons";
+
+2. 설치를해야됨
+    yarn add @ant-design/icons
+
+3. 이제 일반 JSX 컴포넌트처럼 사용하면 됨
+
+====style 변경 법====
+
+1. emotion import
+    import styled from '@emotion/styled'
+
+2. const MyIcon = styled(AppleOutlined)`
+      color: red;
+      font-size: 50px; //크기를 키울때 font size사용
+    `;
+    와 같이 작성해주면됨
+    
+===================
+ID 가져올때
+
+const onCLickDelete = (event: MouseEvent<HTMLDivElement>): void => { //타입스크립트로 타입 지정
+    console.log(event.currentTarget.id); //이벤트 버블링으로 부모의 아이디를 가져오게 currentTarget을 사용함
+};
+
+    <div id="삭제할게시글ID" onClick={onCLickDelete}>
+      <MyIcon />
+    </div>
+
+이러게 하는 이유는 MyIcon 을 자세히 보면
+
+img태그에 SVG가 적용되어잇고 이게 span에 감싸져있음 그렇기에 클릭해도 해당 아이디를 가져올 수 없음
+
+
+===================
+antd에 onChange는 HTML onChange랑 다른거임 따라서 event가 발생하지 않음

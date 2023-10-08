@@ -1,0 +1,64 @@
+stop-propagation
+
+event-bubbling을 강제로 종료함
+
+  <부모 id = {el.writer} onClick = {func1}>
+    <자식1 onClick = {func2}>title
+      <자식2 onClick = {func3}>number
+        <자식3 onClick = {func4}>writer</자식>
+      </자식>
+    </자식>
+  </부모>
+
+여기서 자식2 부분을 클릭하면 eventbubbling에 의해 
+func3 > func2 > func1 순서로 총 3개가 실행이됨
+
+이걸 강제로 멈추는 방법이
+stopPropagation()임
+
+const func3 ()=> {
+  event.stopPropagation()
+  alert("3번째 함수")
+}
+
+이런식으로 사용하면 func3만 실행되고 func2 func1은 실행 안됨
+
+***
+이벤트 버블링은 컴포넌트로 개발하여 파일이 분리되어있어도 적용되기 떄문에 이부분을 조심해야됨
+***
+
+예시.
+=================
+부모컴포넌트.tsx
+import 자식컴포넌트 from "./자식컴포넌트"
+
+  const qqq1 = (event: MouseEvent<HTMLDivElement>) =>{
+    alert("1번 함수")
+  }
+
+  const qqq4 = (event: MouseEvent<HTMLSpanElement>) =>{
+    alert("4번 함수")
+  }
+
+  <div id={el.writer} onClick={qqq1}>
+    <Checkbox />
+    <span style={{margin: "10px"}} onClick={qqq4}>{el.number}</span> 
+    <span style={{margin: "10px"}} >{el.title}</span> 
+    <span style={{margin: "10px"}}>{el.writer}</span>
+  </div>
+=================
+자식컴포넌트.tsx
+
+  const qqq2 = (event: MouseEvent<HTMLSpanElement>) =>{
+    alert("2번 함수")
+  }
+  const qqq3 = (event: MouseEvent<HTMLInputElement>) =>{
+    event.stopPropagation()//이걸 사용안하면  checkbox를 다른 곳에서 사용했을때 qqq1이 실행됨 
+    alert("3번 함수")
+  }
+
+  <span onClick={qqq2}>
+    <input type="checkbox" onClick={qqq3}/>
+  </span>
+
+

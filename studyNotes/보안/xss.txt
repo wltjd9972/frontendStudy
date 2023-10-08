@@ -1,0 +1,5 @@
+dangerouslySetInnerHTML={{
+  __html: Dompurify.sanitize(data?.fetchBoard?.contents),
+}}
+
+xss방지를 위해 Dompurify라이브러리를 사용함

@@ -1,0 +1,40 @@
+event-bubbling?
+
+이벤트 버블링 = 자식=>부모 //default
+이벤트 캡처링 = 부모=>자식
+
+자식에서 시작한 이벤트는 부모까지감
+
+예시. 
+  <부모 id = {el.writer} onClick = {func2}>
+    <자식 onClick = {func1}>title</자식>
+    <자식 onClick = {func1}>number</자식>
+    <자식 onClick = {func1}>writer</자식>
+  </부모>
+
+자식을 클릭할 경우: func1이 먼저 실행되고, 이벤트 버블링 때문에 이후에 func2도 실행됩니다.
+부모만 클릭할 경우: func2만 실행됩니다.
+
+이벤트 버블링은 컴포넌트로 개발해도 적용됨
+즉. 자식컴포넌트 > 부모 컴포넌트로 이벤트 버블링이 발생함
+
+
+const func2 (event) => {
+  alert(event.target.id)
+}
+문제점
+
+func2 내부에서 event.target.id를 사용하면 실제로 클릭된 요소의 ID를 반환하려고 합니다.
+그러나 자식 요소를 클릭했을 때, 해당 자식 요소는 ID 속성을 갖고 있지 않기 때문에 
+func2에 있는 event.target.id가 실행되지 않음
+
+이와 같은 문제를 해결하려면 event.currentTarget.id를 사용하면 
+항상 이벤트 리스너가 부착된 요소(이 경우에는 "부모" 요소)의 ID를 가져올 수 있습니다.
+
+const func2 (event) => {
+  alert(event.currentTarget.id) 
+}
+
+//이건 해당함수가 실행되는 해당 태그의 event.target임
+즉 자식을 클릭해도 이벤트 버블링으로 인해 부모의 함수가 실행됨 부모 태그에는 id요소가 있기 떄문에 
+alert에 ID를 나타냄

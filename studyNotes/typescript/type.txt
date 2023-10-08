@@ -1,0 +1,22 @@
+**타입스크립트란 자바스크립트의 타입을 강제시키는 언어입니다.**
+
+기존의 자바스크립트에서는 아래와 같이 변수에 문자열을 할당했다가 
+이후에 숫자열을 재할당해도 문제가 되지 않습니다.
+
+1. number type 숫자 타입
+  let aaa:number = 1 
+
+2. string type 
+  let bbb:string = "철수"
+
+3. true or false type 
+  boolean = true
+
+4. objeat type
+  interface IProfile { //IProfile은 타입 이름임 다르게 작성해도됨
+    name: string;
+    age: number;
+    school?: string //있으면 쓰고 없으도 상관없음
+  } 
+  //객체의 타입을 생성
+  let profile: IProfile = { name: "철수", age: 13}

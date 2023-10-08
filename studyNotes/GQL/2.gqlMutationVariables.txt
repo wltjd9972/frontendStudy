@@ -1,0 +1,11 @@
+1. mutation의 변수값의 타입설정
+mutation createProfile($createProfile: createProfile!, $boardId: _id){ 
+          //먼저 mutation 옆에 해당 api의 변수의 타입을 지정함
+  createProfile(createProfile: $createProfile, boardId:$boardId){ 
+    //이제 해당 변수의 타입을 사용하여 api호출 하고 return값을 받아옴
+    _id
+  }
+}
+
+이런식임
+

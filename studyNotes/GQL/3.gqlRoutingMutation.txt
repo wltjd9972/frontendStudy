@@ -1,0 +1,33 @@
+1. GraphQL API 설정
+
+  const 나의그래프큐엘셋팅 = gql`
+    mutation createProfile($createProfile: createProfile!, $boardId: _id){ 
+      createProfile(createProfile: $createProfile, boardId:$boardId){
+        _id
+      }
+    }
+  `;
+
+2.나의그래프큐엘셋팅api를 호출하는 나의함수 바인딩
+  const [ 나의함수 ] = useMutation(나의그래프큐엘셋팅) 
+
+
+3. 비동기를 동기로 변경
+  const 함수 = async () => { //함수를 실행시키면 나의함수()를 백엔드에 요청함 async는 await를 실행시키기위해 작성
+    const result = await 나의함수() //await 는 서버에 나의함수()라는 api요청을 하고 응답을 받을때까지 기달림 즉. 비동기를 동기를 바꿔줌
+  }
+
+함수 사용법
+  const 함수 = async () => {
+    cosnt result = await 나의함수({ 
+      //나의 함수 실행 후 값을 result에 저장 이건 연습이기에 저장하는거고 굳이 할필요 없음
+      variables: {
+        createProfile: { //createProfile: $createProfile을 셋팅했기때문에 variables를 사용하여 요청함
+
+        },
+        boardId: {
+
+        }
+      }
+    })
+  }

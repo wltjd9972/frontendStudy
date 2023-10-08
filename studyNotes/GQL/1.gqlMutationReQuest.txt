@@ -1,0 +1,22 @@
+
+1. api 사용법
+  mutation {
+    createProfile(name: "철수", age: 12, school: "다람쥐 초등학교"){
+      리턴
+      }  
+  }
+
+이게 mutation의 전부임 여기서 리턴을 받기 위해 {} 을 이용해서 받아옴
+
+
+2.사용예시
+  mutation {
+    createProfile(name: "철수", age: 12, school: "다람쥐 초등학교") {
+      _id
+      number
+      age 이때 엔터를 사용하면 ,를 입력 안해도됨 
+    }
+  }
+
+createProfile에 name: "철수", age: 12, school: "다람쥐 초등학교"을 넣어서 요청하고 
+응답 _id,number,age값을 return으로 받아옴
